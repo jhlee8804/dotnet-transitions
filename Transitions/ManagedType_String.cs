@@ -15,7 +15,7 @@ namespace Transitions
         /// <summary>
         /// Returns the type we're managing.
         /// </summary>
-        public Type getManagedType()
+        public Type GetManagedType()
         {
             return typeof(string);
         }
@@ -23,7 +23,7 @@ namespace Transitions
         /// <summary>
         /// Returns a copy of the string passed in.
         /// </summary>
-        public object copy(object o)
+        public object Copy(object o)
         {
             string s = (string)o;
             return new string(s.ToCharArray());
@@ -32,29 +32,29 @@ namespace Transitions
         /// <summary>
         /// Returns an "interpolated" string.
         /// </summary>
-        public object getIntermediateValue(object start, object end, double dPercentage)
+        public object GetIntermediateValue(object start, object end, double percentage)
         {
             string strStart = (string)start;
             string strEnd = (string)end;
 
             // We find the length of the interpolated string...
-            int iStartLength = strStart.Length;
-            int iEndLength = strEnd.Length;
-            int iLength = Utility.interpolate(iStartLength, iEndLength, dPercentage);
-            char[] result = new char[iLength];
+            int startLength = strStart.Length;
+            int endLength = strEnd.Length;
+            int length = Utility.Interpolate(startLength, endLength, percentage);
+            char[] result = new char[length];
 
             // Now we assign the letters of the results by interpolating the
             // letters from the start and end strings...
-            for (int i = 0; i < iLength; ++i)
+            for (int i = 0; i < length; ++i)
             {
                 // We get the start and end chars at this position...
                 char cStart = 'a';
-                if(i < iStartLength)
+                if(i < startLength)
                 {
                     cStart = strStart[i];
                 }
                 char cEnd = 'a';
-                if(i < iEndLength)
+                if(i < endLength)
                 {
                     cEnd = strEnd[i];
                 }
@@ -72,7 +72,7 @@ namespace Transitions
 					// The end character is not a space, so we interpolate...
 					int iStart = Convert.ToInt32(cStart);
 					int iEnd = Convert.ToInt32(cEnd);
-					int iInterpolated = Utility.interpolate(iStart, iEnd, dPercentage);
+					int iInterpolated = Utility.Interpolate(iStart, iEnd, percentage);
 					cInterpolated = Convert.ToChar(iInterpolated);
 				}
 
