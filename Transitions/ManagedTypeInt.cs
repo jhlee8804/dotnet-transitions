@@ -7,7 +7,7 @@ namespace Transitions
     /// <summary>
     /// Manages transitions for int properties.
     /// </summary>
-    internal class ManagedType_Int : IManagedType
+    internal class ManagedTypeInt : IManagedType
     {
 		#region IManagedType Members
 

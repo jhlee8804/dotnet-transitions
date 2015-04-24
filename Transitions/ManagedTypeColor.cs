@@ -9,7 +9,7 @@ namespace Transitions
 	/// Class that manages transitions for Color properties. For these we
 	/// need to transition the R, G, B and A sub-properties independently.
 	/// </summary>
-	internal class ManagedType_Color : IManagedType
+	internal class ManagedTypeColor : IManagedType
 	{
 		#region IManagedType Members
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Transitions
 {
-    internal class ManagedType_Float : IManagedType
+    internal class ManagedTypeFloat : IManagedType
     {
         #region IManagedType Members
 
