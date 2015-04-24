@@ -21,10 +21,10 @@ You create a transition in three stages:
 
 Here's an example:
 ```
-Transition t = new Transition(new TransitionType_EaseInEaseOut(2000));
-t.add(pictureBox1, "Left", 0);
-t.add(pictureBox2, "Left", -300);
-t.run();
+Transition t = new Transition(new TransitionTypeEaseInEaseOut(2000));
+t.Add(pictureBox1, "Left", 0);
+t.Add(pictureBox2, "Left", -300);
+t.Run();
 ```
 This transition moves pictureBox1 to X=0 and pictureBox2 to X=-300 from their initial positions overr the course of 2000ms. (If pictureBox1.Left was -300 before the transition, and the width of the picture-boxes is 300, this will slide picturebox2 off the screen while simultaneously sliding picturebox1 onto the screen.)
 
@@ -38,27 +38,27 @@ When you run the transition, the Transitions library will animate the specified 
 ### Creating a transition that works on a single property ###
 The Transitions class has a static run() method that lets you animate a single property. You call it like this:
 ```
-Transition.run(this, "BackColor", Color.Red, new TransitionType_Linear(1000));
+Transition.Run(this, "BackColor", Color.Red, new TransitionTypeLinear(1000));
 ```
 
 This is just a convenient shorthand for:
 ```
-Transition t = new Transition(new TransitionType_Linear(1000));
-t.add(this, "BackColor", Color.Red);
-t.run();
+Transition t = new Transition(new TransitionTypeLinear(1000));
+t.Add(this, "BackColor", Color.Red);
+t.Run();
 ```
 
 
 ### Creating chained transitions ###
 You may want to create animated transitions that chain together. For example, you might want to move an object down the screen and then across. To do this, you create multiple individual transitions and chain them together like this:
 ```
-Transition t1 = new Transition(new TransitionType_Linear(1000));
-t1.add(pictureBox1, "Top", 500);
+Transition t1 = new Transition(new TransitionTypeLinear(1000));
+t1.Add(pictureBox1, "Top", 500);
 
-Transition t2 = new Transition(new TransitionType_Linear(1000));
-t2.add(pictureBox1, "Left", 400);
+Transition t2 = new Transition(new TransitionTypeLinear(1000));
+t2.Add(pictureBox1, "Left", 400);
 
-Transition.runChain(t1, t2);
+Transition.RunChain(t1, t2);
 ```
 This animates the picture-box to Y=500 and when that has completed it animates it to X=400. The runChain() method can take an arbitrary number of transitions, or can take an array of Transition objects.
 
@@ -94,7 +94,7 @@ IList<TransitionElement> elements = new List<TransitionElement>();
 elements.Add(new TransitionElement(50, 50, InterpolationMethod.Accleration));
 elements.Add(new TransitionElement(100, 100, InterpolationMethod.Deceleration));
 
-Transition.run(pictureBox1, "Left", 400, new TransitionType_UserDefined(elements, 2000));
+Transition.Run(pictureBox1, "Left", 400, new TransitionTypeUserDefined(elements, 2000));
 ```
 This specifies that by 50% of the way through the transition, the value will be at 50% of the final value and will have got there by accelerating; by 100% of the way through it will have 100% of the value and will have got there by decelerating. (See the sample code for another example of a user-defined transition.)
 
@@ -102,7 +102,7 @@ This specifies that by 50% of the way through the transition, the value will be 
 ### Creating your own transition-type ###
 All transition-types implement the ITransitionType interface. You can create your own classes that implement this interface and use them as your own custom transition-types. The interface has only one method:
 ```
-void onTimer(int iTime, out double dPercentage, out bool bCompleted);
+void OnTimer(int time, out double percentage, out bool completed);
 ```
 As the transition progresses, the elapsed time (in milliseconds) is passed in. The function calculates the percentage 'distance' traveled between the original and destination values of properties for this point in time. (This is returned as a number like 0.75 for 75%.) Note: you can return values less than 0.0 and greater than 1.0 if you want to create a transition that can 'overshoot' the original or destination values. When the transition has completed, you must return true in the bCompleted parameter.
 
