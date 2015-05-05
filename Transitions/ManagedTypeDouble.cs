@@ -33,8 +33,8 @@ namespace Transitions
 		/// </summary>
 		public object GetIntermediateValue(object start, object end, double percentage)
 		{
-			double dStart = (double)start;
-			double dEnd = (double)end;
+			double dStart = Convert.ToDouble(start);
+            double dEnd = Convert.ToDouble(end);
 			return Utility.Interpolate(dStart, dEnd, percentage);
 		}
 

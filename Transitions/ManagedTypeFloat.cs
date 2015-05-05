@@ -30,8 +30,8 @@ namespace Transitions
         /// </summary>
         public object GetIntermediateValue(object start, object end, double percentage)
         {
-            float fStart = (float)start;
-            float fEnd = (float)end;
+            float fStart = (float)Convert.ToDouble(start);
+            float fEnd = (float)Convert.ToDouble(end);
             return Utility.Interpolate(fStart, fEnd, percentage);
         }
 
